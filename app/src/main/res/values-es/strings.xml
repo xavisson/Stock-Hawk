@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="pref_display_mode_absolute_key">absoluto</string>
+    <string name="pref_display_mode_percentage_key">percentual</string>
+
+    <string name="action_change_units">Cambia las unidades entre dólares o porcentaje</string>
+
+    <string name="dialog_title">Añadir Stock</string>
+    <string name="dialog_hint">Símbolo (por ejemplo GOOG)</string>
+    <string name="dialog_cancel">Cancelar</string>
+    <string name="dialog_add">Añadir</string>
+
+    <string name="error_no_network">No hay conectividad! Se mostrará la información cuando la red esté disponible.</string>
+    <string name="error_no_stocks">No hay stocks añadidos! Pulsa el botón flotante para añadir uno.</string>
+    <string name="error_wrong_quote">El stock que has añadido no existe</string>
+
+    <string name="toast_stock_added_no_connectivity">Símbolo %s añadido. Se mostrará cuando la red esté disponible.</string>
+    <string name="toast_no_connectivity">Se mostrará la información cuando la red esté disponible.</string>
+
+    <string name="content_description_fab_main">Añade un nuevo stock a la lista</string>
+</resources>
