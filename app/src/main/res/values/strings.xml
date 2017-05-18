@@ -31,5 +31,6 @@
     <string name="toast_no_connectivity">Will refresh when network available.</string>
 
     <string name="content_description_fab_main">Add a new stock to the list</string>
+    <string name="graph_legend">Stock Value (USD)</string>
 
 </resources>

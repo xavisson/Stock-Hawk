@@ -19,4 +19,5 @@
     <string name="toast_no_connectivity">Se mostrará la información cuando la red esté disponible.</string>
 
     <string name="content_description_fab_main">Añade un nuevo stock a la lista</string>
+    <string name="graph_legend">Valor del stock (USD)</string>
 </resources>
