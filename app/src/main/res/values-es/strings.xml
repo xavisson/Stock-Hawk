@@ -20,4 +20,5 @@
 
     <string name="content_description_fab_main">Añade un nuevo stock a la lista</string>
     <string name="graph_legend">Valor del stock (USD)</string>
+    <string name="widget_no_data">No hay datos disponibles</string>
 </resources>

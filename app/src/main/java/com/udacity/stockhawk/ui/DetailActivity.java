@@ -7,6 +7,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -57,6 +58,9 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+        Log.d("DetailActivity", "onCreate");
+        Log.d("DetailActivity", "hasExtra: " + getIntent().hasExtra("symbol"));
 
         graphTitle = (TextView) findViewById(R.id.symbol);
         priceTextView = (TextView) findViewById(R.id.price);
