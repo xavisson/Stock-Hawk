@@ -7,7 +7,6 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -32,6 +31,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 import static com.udacity.stockhawk.utils.StockUtils.formatDate;
 import static com.udacity.stockhawk.utils.StockUtils.formatHistory;
 
@@ -49,23 +51,20 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
 
     private List<HistoryItem> historyItemList = new ArrayList<>();
 
-    private TextView graphTitle;
-    private TextView priceTextView;
-    private TextView changeTextView;
-    private LineChart stockChart;
+    @BindView(R.id.symbol)
+    TextView graphTitle;
+    @BindView(R.id.price)
+    TextView priceTextView;
+    @BindView(R.id.change)
+    TextView changeTextView;
+    @BindView(R.id.stock_chart)
+    LineChart stockChart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-
-        Log.d("DetailActivity", "onCreate");
-        Log.d("DetailActivity", "hasExtra: " + getIntent().hasExtra("symbol"));
-
-        graphTitle = (TextView) findViewById(R.id.symbol);
-        priceTextView = (TextView) findViewById(R.id.price);
-        changeTextView = (TextView) findViewById(R.id.change);
-        stockChart = (LineChart) findViewById(R.id.stock_chart);
+        ButterKnife.bind(this);
 
         if (getIntent().hasExtra("symbol"))
             symbol = getIntent().getStringExtra("symbol");
@@ -80,8 +79,6 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
         percentageFormat.setMaximumFractionDigits(2);
         percentageFormat.setMinimumFractionDigits(2);
         percentageFormat.setPositivePrefix("+");
-
-
     }
 
     @Override
