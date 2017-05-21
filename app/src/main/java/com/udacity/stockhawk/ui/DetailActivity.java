@@ -40,12 +40,15 @@ import static com.udacity.stockhawk.utils.StockUtils.formatHistory;
 public class DetailActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final int GRAPH_STOCK_LOADER = 10;
+    private static final String STATE_SYMBOL = "stateSymbol";
+    private static final String STATE_HISTORY = "stateHistory";
 
     private DecimalFormat dollarFormatWithPlus;
     private DecimalFormat dollarFormat;
     private DecimalFormat percentageFormat;
 
     private String symbol = "";
+    private String history;
     private float rawAbsoluteChange = 0;
     private float rawPercentageChange = 0;
 
@@ -66,11 +69,24 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
         setContentView(R.layout.activity_detail);
         ButterKnife.bind(this);
 
-        if (getIntent().hasExtra("symbol"))
-            symbol = getIntent().getStringExtra("symbol");
+        if (savedInstanceState != null) {
+
+            symbol = savedInstanceState.getString(STATE_SYMBOL);
+            history = savedInstanceState.getString(STATE_HISTORY);
+
+            historyItemList = formatHistory(history);
+            drawChart();
+
+        } else {
+
+            if (getIntent().hasExtra("symbol"))
+                symbol = getIntent().getStringExtra("symbol");
+
+            getSupportLoaderManager().initLoader(GRAPH_STOCK_LOADER, null, this);
+        }
+
 
         graphTitle.setText(symbol);
-        getSupportLoaderManager().initLoader(GRAPH_STOCK_LOADER, null, this);
 
         dollarFormat = (DecimalFormat) NumberFormat.getCurrencyInstance(Locale.US);
         dollarFormatWithPlus = (DecimalFormat) NumberFormat.getCurrencyInstance(Locale.US);
@@ -118,8 +134,8 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
             }
 
             updateChange();
-
-            historyItemList = formatHistory(data.getString(Contract.Quote.POSITION_HISTORY));
+            history = data.getString(Contract.Quote.POSITION_HISTORY);
+            historyItemList = formatHistory(history);
             drawChart();
         }
     }
@@ -218,5 +234,14 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+
+        outState.putString(STATE_SYMBOL, symbol);
+        outState.putString(STATE_HISTORY, history);
+
+        super.onSaveInstanceState(outState);
     }
 }
