@@ -35,6 +35,7 @@
     <string name="content_description_fab_main">Add a new stock to the list</string>
     <string name="graph_legend">Stock Value (USD)</string>
     <string name="widget_no_data">No data available</string>
+    <string name="content_description_widget">Widget to access StockHawk</string>
 
 
 </resources>
